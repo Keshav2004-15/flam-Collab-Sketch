@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎨 CollabSketch</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Toolbar (Top Bar) -->
+    <header class="toolbar">
+      <h1>🎨 CollabSketch</h1>
+      <div class="toolbar-actions">
+        <button id="undoBtn" title="Undo"><i data-lucide="rotate-ccw"></i></button>
+        <button id="redoBtn" title="Redo"><i data-lucide="rotate-cw"></i></button>
+        <button id="clearBtn" class="danger" title="Clear Canvas"><i data-lucide="trash-2"></i></button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+
+        <!-- Tools -->
+        <section class="panel">
+          <h3>🛠️ Tools</h3>
+          <div class="tool-grid">
+            <button class="tool active" data-tool="pencil"><i data-lucide="pencil"></i><span>Pencil</span></button>
+            <button class="tool" data-tool="brush"><i data-lucide="paintbrush"></i><span>Brush</span></button>
+            <button class="tool" data-tool="eraser"><i data-lucide="eraser"></i><span>Eraser</span></button>
+            <button class="tool" data-tool="fill"><i data-lucide="palette"></i><span>Fill</span></button>
+            <button class="tool" data-tool="text"><i data-lucide="type"></i><span>Text</span></button>
+            <button class="tool" data-tool="picker"><i data-lucide="eye"></i><span>Picker</span></button>
+          </div>
+        </section>
+
+        <!-- Brushes -->
+        <section class="panel">
+          <h3>🖌️ Brushes</h3>
+          <select id="brushType">
+            <option>Round Brush</option>
+            <option>Flat Brush</option>
+            <option>Calligraphy</option>
+          </select>
+        </section>
+
+        <!-- Shapes -->
+        <section class="panel">
+          <h3>🔷 Shapes</h3>
+          <select id="shapeType">
+            <option>Circle</option>
+            <option>Rectangle</option>
+            <option>Triangle</option>
+          </select>
+        </section>
+
+        <!-- Colors -->
+        <section class="panel">
+          <h3>🎨 Colours</h3>
+          <input type="color" id="colorPicker" value="#ff0000" />
+          <div class="recent-colors">
+            <div style="background:#ff6b6b"></div>
+            <div style="background:#4ecdc4"></div>
+            <div style="background:#ffe66d"></div>
+            <div style="background:#1a535c"></div>
+            <div style="background:#5f27cd"></div>
+          </div>
+        </section>
+
+        <!-- Brush Size -->
+        <section class="panel">
+          <h3>🧮 Brush Size</h3>
+          <input type="range" id="strokeWidth" min="1" max="30" value="5" />
+          <span id="brushValue">5px</span>
+        </section>
+
+        <!-- Zoom -->
+        <section class="panel">
+          <h3>🔍 Zoom</h3>
+          <div class="zoom-controls">
+            <button id="zoomInBtn"><i data-lucide="zoom-in"></i></button>
+            <button id="zoomOutBtn"><i data-lucide="zoom-out"></i></button>
+            <button id="resetZoomBtn"><i data-lucide="maximize-2"></i></button>
+          </div>
+        </section>
+
+        <!-- Background -->
+        <section class="panel">
+          <h3>🧾 Background</h3>
+          <button class="bg-btn active">Plain White</button>
+          <button class="bg-btn">Grid Paper</button>
+          <button class="bg-btn">Dotted Paper</button>
+        </section>
+
+        <!-- Actions -->
+        <section class="panel">
+          <h3>⚡ Actions</h3>
+          <button id="undoBtn2">Undo</button>
+          <button id="redoBtn2">Redo</button>
+          <button id="clearBtn2" class="danger">Clear</button>
+        </section>
+
+        <!-- Layers -->
+        <section class="panel">
+          <h3>🧩 Layers</h3>
+          <button>New Layer</button>
+          <button>Merge Layers</button>
+        </section>
+
+        <!-- Artists Online -->
+        <section class="panel">
+          <h3>🧑‍🎨 Artists Online</h3>
+          <div class="online-user you">🟢 You</div>
+          <div class="artist-count">1 artist online</div>
+        </section>
+      </aside>
+
+      <!-- Canvas Area -->
+      <div class="canvas-container">
+        <canvas id="drawCanvas"></canvas>
+        <div class="zoom-info">Zoom: 100%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="canvas.js"></script>
+  <script src="websocket.js"></script>
+  <script src="main.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
